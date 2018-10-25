@@ -1,0 +1,33 @@
+data = 2;
+Nmonte = 50;
+Nsenario = 2;
+
+ERR_SLR = zeros(2,2,Nsenario);
+ERR_BAL = zeros(2,2,Nsenario);
+
+
+for ss = 1 : Nsenario
+
+    switch ss
+        case 1
+            Ntrs = [90 10];
+            Ntes = [1000 1000];
+        case 2
+            Ntrs = [90 10];
+            Ntes = [1800 200];
+        otherwise
+            error('no such senario !');
+    end
+                :
+                :
+                :
+
+end
+
+
+--------- Senario 1  ---------------- 
+sensitivity  unbal : 0.946  bal : 0.916 
+specificity  unbal : 0.319  bal : 0.401 
+--------- Senario 2  ---------------- 
+sensitivity  unbal : 0.942  bal : 0.911 
+specificity  unbal : 0.319  bal : 0.390 

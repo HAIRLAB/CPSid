@@ -1,0 +1,106 @@
+test_binary_classification
+This is a demo how the sparse logistic regression model works...
+
+The data is generated from a real experimental EEG data.
+In the experiment a subject executed either left or right finger tapping.
+The data has already been processed appropriately for classification.
+
+
+Press any key to proceed 
+
+
+OLD version (ARD-Laplace)!!
+
+ Learning parameters for class 1 .... 
+Iterations : 100, Feature Remained: 10 
+Iterations : 200, Feature Remained: 10 
+Iterations : 300, Feature Remained: 10 
+
+ Learning parameters for class 2 .... 
+ All parameters fixed to zeros...
+ Training Correct : 92.33 %,  Test Correct : 88.57 %
+Elapsed time is 1.760362 seconds.
+
+Fast version (ARD-Variational)!!
+
+ Learning parameters for class 1 .... 
+Iterations : 100, Feature Remained: 8 
+Iterations : 200, Feature Remained: 8 
+Iterations : 300, Feature Remained: 8 
+
+ Learning parameters for class 2 .... 
+All parameters fixed to zeros...
+ Training Correct : 92.00 %,  Test Correct : 90.00 %
+Elapsed time is 0.257014 seconds.
+
+
+Linear RVM (ARD-Variational)!!
+Iterations : 1000, Feature Remained: 10 
+ Training Correct : 93.67 %,  Test Correct : 88.57 %
+Elapsed time is 0.610132 seconds.
+Warning: Contour not rendered for constant ZData
+> In <a href="error:/home/cns/matlab/r2007b/toolbox/matlab/specgraph/contour.m,192,1">contour>parseargs at 192</a>
+  In <a href="error:/home/cns/matlab/r2007b/toolbox/matlab/specgraph/contour.m,67,1">contour at 67</a>
+  In <a href="error:/home/cbi-data/oyamashi/matlab/Tools/Mine/SLR/SLR04/slr_view_data.m,48,1">slr_view_data at 48</a>
+  In <a href="error:/home/cbi-data/oyamashi/matlab/Tools/Mine/SLR/SLR04/TEST/test_binary_classification.m,125,1">test_binary_classification at 125</a>
+Warning: Contour not rendered for constant ZData
+> In <a href="error:/home/cns/matlab/r2007b/toolbox/matlab/specgraph/contour.m,192,1">contour>parseargs at 192</a>
+  In <a href="error:/home/cns/matlab/r2007b/toolbox/matlab/specgraph/contour.m,67,1">contour at 67</a>
+  In <a href="error:/home/cbi-data/oyamashi/matlab/Tools/Mine/SLR/SLR04/slr_view_data.m,48,1">slr_view_data at 48</a>
+  In <a href="error:/home/cbi-data/oyamashi/matlab/Tools/Mine/SLR/SLR04/TEST/test_binary_classification.m,129,1">test_binary_classification at 129</a>
+Finish demo !
+diary off
+diary on
+test_binary_classification
+This is a demo how the sparse logistic regression model works...
+
+The data is generated from a real experimental EEG data.
+In the experiment a subject executed either left or right finger tapping.
+The data has already been processed appropriately for classification.
+
+
+Press any key to proceed 
+
+
+OLD version (ARD-Laplace)!!
+
+ Learning parameters for class 1 .... 
+Iterations : 100, Feature Remained: 10 
+Iterations : 200, Feature Remained: 10 
+Iterations : 300, Feature Remained: 10 
+
+ Learning parameters for class 2 .... 
+ All parameters fixed to zeros...
+ Training Correct : 92.33 %,  Test Correct : 88.57 %
+Elapsed time is 1.747835 seconds.
+
+Fast version (ARD-Variational)!!
+
+ Learning parameters for class 1 .... 
+Iterations : 100, Feature Remained: 8 
+Iterations : 200, Feature Remained: 8 
+Iterations : 300, Feature Remained: 8 
+
+ Learning parameters for class 2 .... 
+All parameters fixed to zeros...
+ Training Correct : 92.00 %,  Test Correct : 90.00 %
+Elapsed time is 0.220228 seconds.
+
+
+Linear RVM (ARD-Variational)!!
+Iterations : 1000, Feature Remained: 10 
+ Training Correct : 93.67 %,  Test Correct : 88.57 %
+Elapsed time is 0.654995 seconds.
+Warning: Contour not rendered for constant ZData
+> In <a href="error:/home/cns/matlab/r2007b/toolbox/matlab/specgraph/contour.m,192,1">contour>parseargs at 192</a>
+  In <a href="error:/home/cns/matlab/r2007b/toolbox/matlab/specgraph/contour.m,67,1">contour at 67</a>
+  In <a href="error:/home/cbi-data/oyamashi/matlab/Tools/Mine/SLR/SLR04/slr_view_data.m,48,1">slr_view_data at 48</a>
+  In <a href="error:/home/cbi-data/oyamashi/matlab/Tools/Mine/SLR/SLR04/TEST/test_binary_classification.m,125,1">test_binary_classification at 125</a>
+Warning: Contour not rendered for constant ZData
+> In <a href="error:/home/cns/matlab/r2007b/toolbox/matlab/specgraph/contour.m,192,1">contour>parseargs at 192</a>
+  In <a href="error:/home/cns/matlab/r2007b/toolbox/matlab/specgraph/contour.m,67,1">contour at 67</a>
+  In <a href="error:/home/cbi-data/oyamashi/matlab/Tools/Mine/SLR/SLR04/slr_view_data.m,48,1">slr_view_data at 48</a>
+  In <a href="error:/home/cbi-data/oyamashi/matlab/Tools/Mine/SLR/SLR04/TEST/test_binary_classification.m,129,1">test_binary_classification at 129</a>
+Finish demo !
+diary('result_test_binary_data3.txt')
+diary off
