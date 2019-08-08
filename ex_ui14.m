@@ -4,6 +4,7 @@ close all
 
 addpath('./tools');
 addpath('./data');
+addpath('./SLR_dev');
 %%  load Data
 data = load('TwoMissLine.mat');
 data1 = data.allData{1};
@@ -44,12 +45,10 @@ ii2 = reshape(([real(i2(:,choose)) imag(i2(:,choose))])',length(i2(:,1))*2,1);
 i = [ii1; ii2];
 
 
-parameter.lambda = [1e-3 1e-6];  % the lambda of z in algorithm 1.
+parameter.lambda = [1e-3 1e-9];  % the lambda of z in algorithm 1.
 parameter.MAXITER = 5;
 parameter.max_s = 20;%the max s
 parameter.epsilon = [0.008  0.05];
-
-
 
 parameter.Phi = A;
 parameter.y = i;
@@ -65,6 +64,7 @@ sys = final_result.sys;
 idx_sys = final_result.idx;
 
 %% identify logic
+if choose == 6 ||choose == 12
 index = 1:size(A,1)/2;
 index = kron(index,ones(1,2));
 index = index';
@@ -72,10 +72,11 @@ Phi2 = [ones(length(index),1) index i i.^2 index./(index+10*i)];
 
 
 para_log.idx_sys = idx_sys;
-para_log.beta = 0.001;
+para_log.beta = 0.01;
 
 para_log.y = i;
 para_log.Phi2 = Phi2;
 
 para_log.normalize = 1;
 [syslogic,labelMat,data] = ihydelogic(para_log);
+end

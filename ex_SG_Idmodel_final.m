@@ -61,14 +61,17 @@ for jj =1:size(choose_node,2)
     Phi2 = [vol ones(length(index),1) ];
     para_log.idx_sys = idx_sys;
     
-    para_log.beta = 1e-4;
+    para_log.beta = 5.8e-5;
     para_log.y = S;
     para_log.Phi2 = Phi2;
     para_log.normalize = 1;
     [syslogic{jj},labelMat,data] = ihydelogic(para_log);
     
-%      T21 = syslogic{1,1}{2,1}/max(abs(syslogic{1,1}{2,1}))
-%      T12 = syslogic{1,1}{1,2}/max(abs(syslogic{1,1}{1,2}))
+     T21(:,jj) = syslogic{1,jj}{2,1}/max(abs(syslogic{1,jj}{2,1}));
+     T12(:,jj) = syslogic{1,jj}{1,2}/max(abs(syslogic{1,jj}{1,2}));
 
 end
-
+fprintf('The identified logic T12 is:')
+display(T12)
+fprintf('The identified logic T21 is:')
+display(T21)

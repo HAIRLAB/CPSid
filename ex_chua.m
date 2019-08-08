@@ -2,7 +2,7 @@ clear all,close all,clc
 
 addpath('./tools');
 addpath('./data');
-
+addpath('./SLR_dev');
 %%  generate Data
 
 data=load('chua.mat');
@@ -49,13 +49,12 @@ end
 
 
 A = [ones(size(y1)) y1 y2 exp(y1) y1./y2  cos(0.1*y1).^2./(1+y2.^2)  cos(y1+y2).^2];
-% A = [ones(size(U)) U I ];
+
 
 parameter.lambda = [0.05 0.01];    % the lambda of z in algorithm 1.
 parameter.MAXITER = 5;
 parameter.max_s = 20;%the max s
 parameter.epsilon = [0.012  0.044];
-parameter.state = state;
 parameter.Phi = A;
 parameter.y = dy1;
 parameter.normalize_y = 1;
@@ -71,7 +70,7 @@ sys = final_result.sys;
 idx_sys = final_result.idx;
 
 %%
-% Phi2 = [ ones(size(U)) U sin(I).*cos(U)  dU./(sin(U)+dU) dU./I  dU];
+Phi2 = [ ones(size(y1)) y1 sin(y2).*cos(y1)  dy1./(sin(y1)+dy1) dy1./y2  dy1];
 
 Phi2 = [ ones(size(y1)) y1 ];
 
@@ -121,7 +120,7 @@ plot(ansy1,'MarkerSize',4,'LineWidth',3,...
     'Color',[0.925490200519562 0.839215695858002 0.839215695858002]);
 
 ansy11 = 1000000*ones(size(y11(:,1)));
-ansy11(find(judge11==1)) = A(find(judge11==1),:)*sys(:,2);
+ansy11(idx_sys{2}) = A(idx_sys{2},:)*sys(:,2);
 ansy11(ansy11==1000000)=nan;
 plot(ansy11,'MarkerSize',8,'Marker','o','LineWidth',1.5,'LineStyle','none',...
     'Color',[0.674509823322296 0.164705887436867 0.0392156876623631])
@@ -134,7 +133,7 @@ plot(ansy2,'MarkerSize',4,'LineWidth',3,...
     'Color',[0.600000023841858 0.800000011920929 1])
 
 ansy22 = 1000000*ones(size(y11(:,1)));
-ansy22(find(judge11==2)) = A(find(judge11==2),:)*sys(:,3);
+ansy22(idx_sys{3}) = A(idx_sys{3},:)*sys(:,3);
 ansy22(ansy22==1000000)=nan;
 plot(ansy22,'MarkerSize',8,'Marker','o','LineWidth',1.5,'LineStyle','none',...
     'Color',[0.223529413342476 0.396078437566757 0.737254917621613])
@@ -148,7 +147,7 @@ plot(ansy3,'MarkerSize',4,'LineWidth',3,...
     'Color',[0.756862759590149 0.866666674613953 0.776470601558685])
 
 ansy33 = 1000000*ones(size(y11(:,1)));
-ansy33(find(judge11==3)) = A(find(judge11==3),:)*sys(:,1);
+ansy33(idx_sys{1}) = A(idx_sys{1},:)*sys(:,1);
 ansy33(ansy33==1000000)=nan;
 plot(ansy33,'MarkerSize',8,'Marker','o','LineWidth',1.5,'LineStyle','none',...
     'Color',[0.301960796117783 0.686274528503418 0.290196090936661])

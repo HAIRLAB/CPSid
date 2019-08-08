@@ -4,11 +4,11 @@ function [result]=ihyde(parameter)
 % -------------------------------------------------------------------------
 % INPUT parameter
 % -------------------------------------------------------------------------
-% parameter.Phi: constructed dictionary matrix ?. Each row is a datapoint.
+% parameter.Phi: constructed dictionary matrix phi. Each row is a datapoint.
 %
 % parameter.y: column vector containing the output datapoints.
 %
-% parameter.s: the max number of subsystems that could be identified by IHYDE
+% parameter.max_s: the max number of subsystems that could be identified by IHYDE
 %
 % parameter.lambda: a 1 by 2 vector(lambda_z, lambda_w). For the identification of a new subsystems.
 %
@@ -47,6 +47,7 @@ MAXITER = parameter.MAXITER;
 y = parameter.y;
 result = parameter;
 deleted_idx = [];
+result.early_stop = 0;
 for k = 1 : parameter.max_s
 
     T = null(Phi')';
@@ -87,6 +88,7 @@ for k = 1 : parameter.max_s
     
     
     if size(idx_sys{k},2) == 0
+        result.early_stop = 1;
         result.s = k;
         break;
     end

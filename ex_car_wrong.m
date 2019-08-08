@@ -2,7 +2,7 @@ clear all,close all,clc
 
 addpath('./tools');
 addpath('./data');
-
+addpath('./SLR_dev');
 %%  load Data
 basis_function.work='off';
 data=load('car2.mat');
@@ -10,7 +10,7 @@ start = 1;
 num = 369;
 index = start:num;
 flag = data.flag(index);
-dy = data.dy(index);
+du = data.dy(index);
 v = data.v(index)/10;
 
 %% library
@@ -22,7 +22,7 @@ v_k2 = v(memory:end-2,:);
 v_k3 = v(memory-1:end-3,:);
 v_k4 = v(memory-2:end-4,:);
 A = A(memory+2:end,:);
-dy = dy(memory+2:end);
+du = du(memory+2:end);
 v = v(memory+2:end);
 flag = flag(memory+2:end);
 
@@ -31,9 +31,8 @@ parameter.lambda = [1e-1 0.00001];   % the lambda of z in algorithm 1.
 parameter.MAXITER = 5;
 parameter.max_s = 20;%the max s
 parameter.epsilon = [100  8];
-parameter.state = flag;
 parameter.Phi = A;
-parameter.y = dy;
+parameter.y = du;
 parameter.normalize_y = 1;
 [result]=ihyde(parameter);
 
@@ -53,7 +52,7 @@ Phi2 = [ones(size(flag)) flag  sin(v) cos(v) tan(v) (v_k1-v_k4)./v_k2  v_k1.*tan
 para_log.idx_sys = idx_sys;
 para_log.beta = 0.1;
 
-para_log.y = dy;
+para_log.y = du;
 para_log.Phi2 = Phi2;
 
 para_log.normalize = 1;
@@ -95,8 +94,8 @@ axes1 = axes('Parent',figure(2));
 hold on
 color = {'r' ,'b'};
 for i =1:2
-    input1 = zeros(size(dy));
-    input1(ans_sys_idx{i},1) = dy(ans_sys_idx{i},1);
+    input1 = zeros(size(du));
+    input1(ans_sys_idx{i},1) = du(ans_sys_idx{i},1);
     
     input1(input1==0)=nan;
     

@@ -4,19 +4,20 @@ close all
 
 addpath('./tools');
 addpath('./data');
-
+addpath('./SLR_dev');
 %% design
 
 
 load('current.mat')
 
 %% make dic
+
 state  = zeros(size(current));
 
 state(1:19995) = 1;
 t = 0:0.001:length(current)*0.001;
 
-index = 1:300:length(current);
+index = 1:300:length(current); 
 current = current(index);
 state = state(index);
 t1= t(index)';
@@ -30,7 +31,6 @@ polyorder = 2;
 memory =5;
 basis_function.work = 'off';
 dic= library(x,polyorder,memory,basis_function);
-% dic(:,2) = [];
 A = dic(memory+1:end,:);
 y = y(memory+1:end,:);
 t1 = t1(memory+1:end,:);
@@ -39,12 +39,6 @@ A111 = A;
 y111 = y;
 
 %% identify subsystem
-
-% 
-% parameter.lambda = [1.5 0.00001];   % 65
-% parameter.MAXITER = 5;
-% parameter.max_s = 20;%the max s
-% parameter.epsilon = [1e-4  0.026];
 
 
 parameter.lambda = [1.5 0.00005];   % 64
@@ -65,8 +59,7 @@ result.epsilon = parameter.epsilon(2);
 result.lambda = parameter.lambda(2);
 result.threshold = [0.05];
 
-result.mode = 'knn';
-result.half_win_size = 5;
+
 final_result  = finetuning( result);
 sys = final_result.sys;
 idx_sys = final_result.idx;
@@ -99,12 +92,12 @@ figure
 hold on
 index1 = 1:length(state);
 y11 = y(index1);
-judge11 = state(index1);
+state = state(index1);
 x11 = x(index1);
 A1 = A(index1,:);
 
 ansy1 = 1000000*ones(size(y11(:,1)));
-ansy1(find(judge11==0)) = y11(find(judge11==0));
+ansy1(find(state==0)) = y11(find(state==0));
 ansy1(ansy1==1000000)=nan;
 plot(ansy1,'b','Linewidth',5);
 
@@ -115,7 +108,7 @@ plot(ansy11,'bo','MarkerSize',10)
 err1 = ansy1 - ansy11;
 
 ansy2 = 1000000*ones(size(y11(:,1)));
-ansy2(find(judge11==1)) = y11(find(judge11==1));
+ansy2(find(state==1)) = y11(find(state==1));
 ansy2(ansy2==1000000)=nan;
 plot(ansy2,'r','Linewidth',5)
 
