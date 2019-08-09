@@ -64,7 +64,7 @@ poolDataLIST({'x','y','z'},Xi,n,polyorder,usesine);
 
 %% integrate true and identified systems
 [tA,xA]=ode45(@(t,x)rhs(x),tspan,x0,options);   % true model
-[tB,xB]=ode45(@(t,x)sparseGalerkin(t,x,Xi0,polyorder,usesine),tspan,x0,options);  % approximate
+[tB,xB]=ode45(@(t,x)sparseGalerkin(t,x,Xi,polyorder,usesine),tspan,x0,options);  % approximate
 
 %% FIGURES!!
 figure
