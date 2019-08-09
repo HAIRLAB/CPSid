@@ -75,7 +75,8 @@ x_tmp = x_tmp(index,:);
 x = x(index,:);
 t = t(index,:);
 
-% plot(t,x);
+% Here, h and j correspond to x1 and x2 in the article. 
+% At the same time, it is the third and fourth state variables in this simulation.
 x = x_tmp;
 tmp = x(:,1);
 for i = 1:size(x,1)
