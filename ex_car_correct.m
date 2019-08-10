@@ -28,7 +28,7 @@ v = v(memory+2:end,:);
 A = A(memory+2:end,:);
 du = du(memory+2:end);
 flag = flag(memory+2:end);
-A = A(:,1:3);
+#A = A(:,1:3);#withoutredundant dictionary functions.
 
 %% identify subsystem
 
