@@ -12,3 +12,6 @@ It can be realized by replacing the code in line 103 of function "slr_learning_l
 
     option = optimset('Gradobj','on','Hessian','on',...
        'MaxIter', WMaxIter, 'Display', WDisplay,'Algorithm','trust-region');
+
+CVX toolbox (http://cvxr.com/cvx/) is need to run the code.
+
